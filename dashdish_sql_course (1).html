@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DashDish SQL Mastery — Interactive Study Guide</title>
+<style>
+:root{--ink:#152c2b;--muted:#5c716d;--paper:#f3f7f2;--white:#fffefa;--green:#176b51;--mint:#d2eadb;--orange:#e56d35;--yellow:#f0c65d;--line:#d8e2da;--code:#112421;--sans:system-ui,-apple-system,"Segoe UI",sans-serif;--display:Georgia,"Times New Roman",serif;--mono:ui-monospace,SFMono-Regular,Consolas,monospace}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 var(--sans)}button,a{font:inherit}a{color:var(--green)}:focus-visible{outline:3px solid var(--orange);outline-offset:3px}.shell{display:grid;grid-template-columns:260px minmax(0,1fr);min-height:100vh}.sidebar{position:sticky;top:0;height:100vh;overflow:auto;background:var(--ink);color:#eef6ef;padding:22px 17px}.logo{font:700 20px var(--display);margin:0 0 5px}.logo span{color:var(--yellow)}.sublogo{font:11px var(--mono);color:#afc3b8;margin-bottom:20px}.progress{height:5px;background:#42564d;border-radius:5px;margin:12px 0 18px;overflow:hidden}.progress i{display:block;height:100%;width:0;background:var(--yellow);transition:width .2s}.sidebar nav{display:grid;gap:2px}.sidebar nav a{color:#c8d6ce;text-decoration:none;padding:6px 8px;border-radius:6px;font-size:12px}.sidebar nav a:hover,.sidebar nav a.active{background:#29443b;color:#fff}.sidebar nav .group{margin:13px 8px 3px;color:var(--yellow);font:10px var(--mono);letter-spacing:.1em;text-transform:uppercase}.main{min-width:0}.top{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px clamp(16px,4vw,50px);background:#f3f7f2ed;border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}.top .crumb{font:11px var(--mono);color:var(--muted)}.top button{border:1px solid var(--line);border-radius:7px;background:var(--white);padding:7px 10px;cursor:pointer;color:var(--ink)}.top .controls{display:flex;gap:7px}.hero{background:var(--ink);color:white;padding:clamp(48px,8vw,100px) clamp(20px,7vw,90px);position:relative;overflow:hidden}.hero:after{content:"DASHDISH";position:absolute;right:-14px;bottom:-85px;color:#d2eadb0b;font:700 clamp(90px,20vw,250px)/1 var(--display);white-space:nowrap}.eyebrow,.kicker{font:11px var(--mono);text-transform:uppercase;letter-spacing:.12em;color:var(--green)}.hero .eyebrow{color:var(--yellow)}h1{position:relative;z-index:1;font:700 clamp(42px,7vw,78px)/.98 var(--display);letter-spacing:-.045em;max-width:820px;margin:18px 0}h1 em{color:var(--mint);font-style:normal}.hero p{position:relative;z-index:1;color:#d0ded6;max-width:760px;font-size:17px}.chips{display:flex;flex-wrap:wrap;gap:8px;position:relative;z-index:1;margin-top:22px}.chip{border:1px solid #52685e;border-radius:99px;padding:5px 9px;color:#d2e0d7;font:10px var(--mono)}.content{max-width:1050px;padding:44px clamp(18px,6vw,72px) 100px}.page{display:none;animation:fade .2s ease}.page.current{display:block}@keyframes fade{from{opacity:.5;transform:translateY(4px)}to{opacity:1;transform:none}}h2{font:700 clamp(29px,4vw,42px)/1.1 var(--display);letter-spacing:-.04em;margin:8px 0 14px}h3{font:700 21px/1.25 var(--display);margin:28px 0 8px}h4{font-size:16px;margin:18px 0 6px}.lede{color:var(--muted);font-size:17px}.card,.note,.callout,.exercise{border:1px solid var(--line);border-radius:10px;background:var(--white);padding:16px;margin:15px 0}.callout{border-left:4px solid var(--orange);background:#fff4e9}.note{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.badge{display:inline-block;background:var(--mint);color:var(--green);border-radius:99px;padding:3px 8px;font:10px var(--mono);margin-bottom:7px}.card h3{margin:0 0 6px;font-size:17px}.card p{margin:0;color:var(--muted);font-size:14px}.code{background:var(--code);border-radius:10px;overflow:hidden;margin:14px 0 20px;color:#edf6ef}.codehead{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #344943;color:#bfd0c6;font:10px var(--mono)}.copy{border:1px solid #586e64;background:transparent;color:#eef6ef;border-radius:5px;padding:4px 8px;cursor:pointer;font:10px var(--mono)}pre{margin:0;padding:15px;overflow:auto;tab-size:2;font:12px/1.65 var(--mono)}code{font-family:var(--mono)}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:8px;background:var(--white);margin:14px 0}table{border-collapse:collapse;width:100%;font-size:12px}th,td{padding:8px 10px;border-bottom:1px solid #e6ece7;text-align:left;vertical-align:top}th{background:#eaf2ec;font:10px var(--mono);text-transform:uppercase}tr:last-child td{border:0}details{margin:9px 0}summary{cursor:pointer;font-weight:700;color:var(--green)}.exercise{background:#eff6ef}.pager{display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid var(--line);padding-top:18px;margin-top:36px}.pager button{border:0;border-radius:7px;background:var(--green);color:white;padding:10px 14px;cursor:pointer}.pager button:disabled{opacity:.4;cursor:not-allowed}.pagecount{font:11px var(--mono);color:var(--muted)}.small{font-size:13px;color:var(--muted)}footer{padding:25px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;text-align:center}@media(max-width:850px){.shell{grid-template-columns:1fr}.sidebar{position:relative;height:auto;max-height:none;padding:14px}.sidebar nav{display:flex;overflow:auto;gap:5px}.sidebar nav .group{display:none}.sidebar nav a{white-space:nowrap}.progress,.sublogo{display:none}.logo{margin-bottom:6px}.top{top:0}.grid{grid-template-columns:1fr}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="sidebar"><div class="logo">DashDish<span> SQL</span></div><div class="sublogo">INTERACTIVE MYSQL STUDY GUIDE</div><div class="progress"><i id="progress"></i></div><nav id="nav">
+<div class="group">Start</div><a href="#p1">Getting started</a><a href="#p2">Sample database</a><a href="#p3">Create schema & tables</a><a href="#p4">Sample data</a>
+<div class="group">DDL · Structure</div><a href="#p5">Alter tables</a><a href="#p6">Drop, truncate, rename</a><a href="#p7">Add rows & constraints</a><a href="#p8">Modify & drop columns</a><a href="#p9">AUTO_INCREMENT</a><a href="#p10">Read data</a>
+<div class="group">DQL · Query</div><a href="#p11">WHERE filters</a><a href="#p12">Operators & precedence</a><a href="#p13">Aggregates</a><a href="#p14">GROUP BY & HAVING</a><a href="#p15">Joins</a><a href="#p16">Join types & set ops</a><a href="#p17">Subqueries</a><a href="#p18">CTEs</a><a href="#p19">Window functions</a><a href="#p20">CASE & NULL</a>
+<div class="group">DML · Transactions · Security</div><a href="#p21">INSERT / UPDATE / DELETE</a><a href="#p22">TCL transactions</a><a href="#p23">DCL permissions</a><a href="#p24">Constraints & integrity</a><a href="#p25">Indexes & EXPLAIN</a><a href="#p26">Practice & recap</a>
+</nav></aside>
+<div class="main"><div class="top"><div class="crumb" id="crumb">DASHDISH SQL · GETTING STARTED</div><div class="controls"><button id="prev" aria-label="Previous lesson">← Previous</button><button id="next" aria-label="Next lesson">Next →</button></div></div>
+<header class="hero"><div class="eyebrow">SQL learning guide · MySQL 8+</div><h1>Learn SQL by running a <em>delivery business.</em></h1><p>Build a food-delivery database and use it to explore SQL commands, table design, queries, joins, summaries, and transactions.</p><div class="chips"><span class="chip">26 lessons</span><span class="chip">DDL · DML · DQL · TCL · DCL</span><span class="chip">MySQL 8+</span><span class="chip">DashDish case study</span></div></header>
+<main class="content">
+<section class="page current" id="p1" data-title="Getting started"><div class="kicker">Getting started · 1</div><h2>What is SQL?</h2><p class="lede">SQL (Structured Query Language) is the standard language for creating, reading, updating, and deleting data in relational databases such as MySQL, PostgreSQL, Oracle, and SQL Server.</p><p>Relational data lives in tables: rows are records, columns are attributes. A delivery platform might store customers, restaurants, couriers, orders, menu items, and order lines in related tables. SQL statements are commonly grouped into five families:</p><div class="grid"><div class="card"><span class="badge">DDL</span><h3>Data Definition Language</h3><p><code>CREATE, ALTER, DROP, TRUNCATE, RENAME</code> define or change structures.</p></div><div class="card"><span class="badge">DML</span><h3>Data Manipulation Language</h3><p><code>INSERT, UPDATE, DELETE</code> change table rows.</p></div><div class="card"><span class="badge">DQL</span><h3>Data Query Language</h3><p><code>SELECT</code> reads rows.</p></div><div class="card"><span class="badge">TCL</span><h3>Transaction Control Language</h3><p><code>COMMIT, ROLLBACK, SAVEPOINT</code> manage transactions.</p></div><div class="card"><span class="badge">DCL</span><h3>Data Control Language</h3><p><code>GRANT, REVOKE</code> manage permissions.</p></div></div><div class="callout"><strong>Dialect note:</strong> this course targets MySQL 8+. Core SQL ideas transfer, but syntax and behavior vary across database engines.</div></section>
+<section class="page" id="p2" data-title="Sample database"><div class="kicker">Case study · 2</div><h2>DashDish database</h2><p class="lede">DashDish is a fictional on-demand food-delivery service.</p><div class="tablewrap"><table><thead><tr><th>Table</th><th>Meaning</th><th>Data features</th></tr></thead><tbody><tr><td>customers</td><td>People ordering food</td><td>Customer 15 has no orders</td></tr><tr><td>restaurants</td><td>Food businesses</td><td>Restaurant 15 has no activity</td></tr><tr><td>couriers</td><td>Delivery workers</td><td>Courier 15 is unassigned</td></tr><tr><td>menu_items</td><td>Food products and ratings</td><td>Equal ratings; one missing rating</td></tr><tr><td>orders</td><td>Customer/restaurant/courier delivery event</td><td>Missing customer and courier IDs; NULL courier assignment</td></tr><tr><td>order_items</td><td>Items and quantities in each order</td><td>Missing menu item ID; multiple lines per order</td></tr></tbody></table></div><p>Foreign keys are initially omitted so unmatched IDs can be used in join examples. Later lessons show how to find and fix orphan records before adding constraints.</p></section>
+<section class="page" id="p3" data-title="Create schema and tables"><div class="kicker">DDL · 3</div><h2>Create a schema and tables</h2><p>In MySQL, a database is also commonly called a schema. Create it, select it with <code>USE</code>, then create tables with columns, data types, defaults, and constraints.</p><div class="code"><div class="codehead"><span>DDL · create database and core tables</span><button class="copy">Copy</button></div><pre><code>DROP DATABASE IF EXISTS dashdish;
+CREATE DATABASE dashdish
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_0900_ai_ci;
+USE dashdish;
+
+CREATE TABLE customers (
+  customer_id INT NOT NULL,
+  customer_name VARCHAR(80) NOT NULL,
+  city VARCHAR(60) NOT NULL,
+  signup_date DATE NOT NULL,
+  loyalty_tier VARCHAR(12) NOT NULL DEFAULT 'standard',
+  PRIMARY KEY (customer_id)
+);
+
+CREATE TABLE restaurants (
+  restaurant_id INT NOT NULL,
+  restaurant_name VARCHAR(100) NOT NULL,
+  cuisine VARCHAR(40) NOT NULL,
+  city VARCHAR(60) NOT NULL,
+  opened_on DATE,
+  PRIMARY KEY (restaurant_id)
+);
+
+CREATE TABLE couriers (
+  courier_id INT NOT NULL,
+  courier_name VARCHAR(80) NOT NULL,
+  vehicle_type VARCHAR(20) NOT NULL,
+  home_city VARCHAR(60) NOT NULL,
+  PRIMARY KEY (courier_id)
+);</code></pre></div><h3>Create the transactional tables</h3><div class="code"><div class="codehead"><span>DDL · menu, orders, and order lines</span><button class="copy">Copy</button></div><pre><code>CREATE TABLE menu_items (
+  item_id INT NOT NULL,
+  restaurant_id INT NOT NULL,
+  item_name VARCHAR(100) NOT NULL,
+  category VARCHAR(30) NOT NULL,
+  price DECIMAL(7,2) NOT NULL,
+  rating DECIMAL(2,1),
+  is_available BOOLEAN NOT NULL DEFAULT TRUE,
+  PRIMARY KEY (item_id)
+);
+
+CREATE TABLE orders (
+  order_id INT NOT NULL,
+  customer_id INT NOT NULL,
+  restaurant_id INT NOT NULL,
+  courier_id INT,
+  order_date DATETIME NOT NULL,
+  status VARCHAR(20) NOT NULL,
+  delivery_fee DECIMAL(6,2) NOT NULL DEFAULT 0,
+  PRIMARY KEY (order_id)
+);
+
+CREATE TABLE order_items (
+  order_item_id INT NOT NULL,
+  order_id INT NOT NULL,
+  item_id INT NOT NULL,
+  quantity INT NOT NULL,
+  unit_price DECIMAL(7,2) NOT NULL,
+  PRIMARY KEY (order_item_id)
+);</code></pre></div><p><strong>Data types:</strong> <code>INT</code> is a whole number; <code>VARCHAR(n)</code> stores variable-length text; <code>DATE</code> stores a calendar date; <code>DATETIME</code> stores date and time; <code>DECIMAL(p,s)</code> stores exact numeric values. MySQL <code>BOOLEAN</code> is a synonym for <code>TINYINT(1)</code>.</p></section>
+<section class="page" id="p4" data-title="Insert sample data"><div class="kicker">DML · 4</div><h2>Insert sample data</h2><p>Each core table contains at least 10–15 rows. The data supports joins, filtering, grouping, NULL handling, and ranking.</p><div class="callout"><strong>Run once after creating tables.</strong> Recreate the database before rerunning these inserts, or remove existing rows first.</div><div class="code"><div class="codehead"><span>DML · customers, restaurants, couriers</span><button class="copy">Copy</button></div><pre><code>INSERT INTO customers VALUES
+(1,'Avery Park','Portland','2025-01-12','gold'),(2,'Jordan Rivera','Seattle','2025-02-03','standard'),(3,'Casey Morgan','Portland','2025-02-18','silver'),(4,'Riley Chen','San Francisco','2025-03-01','gold'),(5,'Quinn Patel','Seattle','2025-03-14','standard'),(6,'Emery Brooks','Portland','2025-04-02','silver'),(7,'Skyler James','San Francisco','2025-04-10','standard'),(8,'Parker Kim','Seattle','2025-05-05','gold'),(9,'Rowan Diaz','Portland','2025-05-19','standard'),(10,'Finley Scott','San Francisco','2025-06-07','silver'),(11,'Dakota Wells','Seattle','2025-06-22','standard'),(12,'Reese Young','Portland','2025-07-01','gold'),(13,'Cameron Fox','San Francisco','2025-07-15','standard'),(14,'Alexis Reed','Seattle','2025-08-03','silver'),(15,'Jamie Bell','Portland','2025-08-21','standard');
+
+INSERT INTO restaurants VALUES
+(1,'Juniper Table','American','Portland','2020-04-10'),(2,'Nori & Rice','Japanese','Seattle','2021-06-18'),(3,'Cedar Curry House','Indian','Portland','2019-09-05'),(4,'Golden Gate Noodles','Chinese','San Francisco','2022-01-12'),(5,'Little Olive','Mediterranean','Seattle','2018-03-22'),(6,'Taco Current','Mexican','Portland','2023-05-04'),(7,'Saffron Spoon','Indian','San Francisco','2020-11-16'),(8,'Moss & Mushroom','American','Seattle','2021-02-08'),(9,'Bluefin Bento','Japanese','Portland','2017-07-30'),(10,'Harbor Pita','Mediterranean','San Francisco','2022-10-02'),(11,'Citrus Wok','Chinese','Seattle','2019-12-14'),(12,'Casa Verde','Mexican','Portland','2020-08-27'),(13,'Lantern Pho','Vietnamese','San Francisco','2023-01-19'),(14,'Rose City Bakery','Bakery','Portland','2016-05-09'),(15,'Quiet Corner Cafe','Cafe','Seattle','2024-02-01');
+
+INSERT INTO couriers VALUES
+(1,'Robin Ellis','bike','Portland'),(2,'Taylor Nguyen','scooter','Seattle'),(3,'Morgan Price','car','Portland'),(4,'Jamie Foster','bike','San Francisco'),(5,'Avery Cole','scooter','Seattle'),(6,'Jordan Hayes','bike','Portland'),(7,'Casey Lane','car','San Francisco'),(8,'Riley Grant','scooter','Seattle'),(9,'Quinn Perry','bike','Portland'),(10,'Emery Stone','car','Seattle'),(11,'Skyler Hart','bike','San Francisco'),(12,'Parker West','scooter','Portland'),(13,'Rowan Shaw','car','Seattle'),(14,'Finley Ross','bike','San Francisco'),(15,'Dakota Gray','scooter','Portland');</code></pre></div><div class="code"><div class="codehead"><span>DML · menu items, orders, order lines</span><button class="copy">Copy</button></div><pre><code>INSERT INTO menu_items VALUES
+(101,1,'Crispy tofu bowl','main',13.50,4.9,TRUE),(102,1,'Maple squash salad','side',8.25,4.7,TRUE),(103,2,'Salmon avocado roll','main',15.00,4.9,TRUE),(104,2,'Miso soup','side',5.50,4.4,TRUE),(105,3,'Paneer tikka','main',14.75,4.7,TRUE),(106,3,'Garlic naan','side',4.25,4.2,TRUE),(107,4,'Chili sesame noodles','main',12.00,4.5,TRUE),(108,5,'Falafel plate','main',13.25,4.5,TRUE),(109,6,'Roasted corn tacos','main',11.50,4.3,TRUE),(110,7,'Chickpea masala','main',14.00,4.8,TRUE),(111,8,'Wild mushroom melt','main',12.75,4.6,TRUE),(112,9,'Teriyaki tofu bento','main',13.00,4.8,TRUE),(113,10,'Lemon herb pita','main',10.50,4.1,TRUE),(114,11,'Ginger broccoli','side',7.25,4.3,FALSE),(115,12,'Mango tres leches','dessert',8.00,NULL,TRUE);
+
+INSERT INTO orders VALUES
+(1001,1,1,1,'2025-09-01 11:30:00','delivered',2.50),(1002,2,2,2,'2025-09-01 12:05:00','delivered',3.00),(1003,3,3,3,'2025-09-02 18:20:00','delivered',2.00),(1004,1,1,6,'2025-09-03 19:10:00','delivered',0.00),(1005,4,4,4,'2025-09-04 13:15:00','cancelled',2.50),(1006,5,5,5,'2025-09-05 20:00:00','delivered',3.50),(1007,6,6,9,'2025-09-06 12:45:00','preparing',2.00),(1008,7,7,7,'2025-09-07 18:35:00','delivered',4.00),(1009,8,8,8,'2025-09-08 19:25:00','delivered',2.75),(1010,9,9,NULL,'2025-09-09 12:10:00','preparing',1.50),(1011,10,10,11,'2025-09-10 20:15:00','delivered',3.25),(1012,11,11,10,'2025-09-11 13:00:00','cancelled',2.00),(1013,12,12,12,'2025-09-12 18:50:00','delivered',0.00),(1014,13,13,13,'2025-09-13 19:40:00','delivered',3.75),(1015,999,14,999,'2025-09-14 10:20:00','delivered',2.25);
+
+INSERT INTO order_items VALUES
+(1,1001,101,1,13.50),(2,1001,102,2,8.25),(3,1002,103,2,15.00),(4,1002,104,1,5.50),(5,1003,105,1,14.75),(6,1003,106,2,4.25),(7,1004,101,2,13.50),(8,1005,107,1,12.00),(9,1006,108,2,13.25),(10,1006,104,1,5.50),(11,1007,109,3,11.50),(12,1008,110,1,14.00),(13,1009,111,1,12.75),(14,1009,102,1,8.25),(15,1010,112,2,13.00),(16,1011,113,1,10.50),(17,1012,114,2,7.25),(18,1013,115,1,8.00),(19,1014,999,1,9.99),(20,1015,101,1,13.50);</code></pre></div></section>
+<section class="page" id="p5" data-title="ALTER TABLE"><div class="kicker">DDL · 5</div><h2>ALTER TABLE: modify structures</h2><p><code>ALTER TABLE</code> adds, modifies, renames, or removes columns and constraints.</p><h3>Add a column</h3><div class="code"><div class="codehead"><span>DDL · add optional email</span><button class="copy">Copy</button></div><pre><code>ALTER TABLE customers
+ADD COLUMN email VARCHAR(255) NULL;</code></pre></div><h3>Modify a column</h3><div class="code"><div class="codehead"><span>DDL · widen a name column</span><button class="copy">Copy</button></div><pre><code>ALTER TABLE customers
+MODIFY COLUMN customer_name VARCHAR(120) NOT NULL;</code></pre></div><h3>Rename a column</h3><div class="code"><div class="codehead"><span>DDL · MySQL 8 syntax</span><button class="copy">Copy</button></div><pre><code>ALTER TABLE customers
+RENAME COLUMN loyalty_tier TO membership_tier;</code></pre></div><p>Older MySQL versions use <code>CHANGE COLUMN</code> and require the full new column definition. Plan schema changes around dependent applications, defaults, nullability, indexes, and migrations.</p></section>
+<section class="page" id="p6" data-title="Drop, truncate, rename"><div class="kicker">DDL · 6</div><h2>DROP, TRUNCATE, and RENAME</h2><div class="grid"><div class="card"><span class="badge">DROP</span><h3>Remove object and data</h3><p><code>DROP TABLE</code> removes the table definition and rows.</p></div><div class="card"><span class="badge">TRUNCATE</span><h3>Remove all rows</h3><p>Keeps structure but empties the table; no WHERE filter.</p></div><div class="card"><span class="badge">RENAME</span><h3>Rename an object</h3><p>Changes a table name without changing its rows.</p></div></div><div class="code"><div class="codehead"><span>DDL · examples</span><button class="copy">Copy</button></div><pre><code>CREATE TABLE scratch_orders LIKE orders;
+INSERT INTO scratch_orders SELECT * FROM orders;
+TRUNCATE TABLE scratch_orders;
+RENAME TABLE scratch_orders TO archived_orders;
+DROP TABLE archived_orders;</code></pre></div><p><code>DELETE FROM table</code> is DML and may use WHERE. <code>TRUNCATE</code> is DDL-like in MySQL, commonly implicitly commits, and resets auto-increment. <code>DROP</code> removes the object. Verify the environment before destructive commands.</p></section>
+<section class="page" id="p7" data-title="Add constraints"><div class="kicker">DDL · 7</div><h2>Add and remove constraints</h2><p>Constraints enforce data quality. Existing rows must satisfy a new constraint before it can be added.</p><div class="code"><div class="codehead"><span>DDL · check, unique, and remove</span><button class="copy">Copy</button></div><pre><code>ALTER TABLE menu_items
+ADD CONSTRAINT chk_menu_price_nonnegative
+CHECK (price &gt;= 0);
+
+ALTER TABLE menu_items
+ADD CONSTRAINT chk_menu_rating_range
+CHECK (rating IS NULL OR rating BETWEEN 0 AND 5);
+
+ALTER TABLE customers
+ADD CONSTRAINT uq_customer_email UNIQUE (email);
+
+ALTER TABLE menu_items
+DROP CHECK chk_menu_rating_range;
+
+ALTER TABLE customers
+DROP INDEX uq_customer_email;</code></pre></div><p>MySQL backs unique constraints with indexes. In current MySQL releases, use <code>DROP CHECK</code> for check constraints and <code>DROP INDEX</code> for the associated unique index.</p></section>
+<section class="page" id="p8" data-title="Modify and drop columns"><div class="kicker">DDL · 8</div><h2>Modify and drop columns</h2><div class="code"><div class="codehead"><span>DDL · modify, add, remove</span><button class="copy">Copy</button></div><pre><code>ALTER TABLE restaurants
+MODIFY COLUMN restaurant_name VARCHAR(150) NOT NULL;
+
+ALTER TABLE restaurants
+ADD COLUMN phone VARCHAR(25) NULL;
+
+ALTER TABLE restaurants
+DROP COLUMN phone;</code></pre></div><div class="callout"><strong>Data-loss warning:</strong> dropping a column deletes its values. Modifying types may truncate, reject, or transform existing values. Inspect and back up data before migrations.</div></section>
+<section class="page" id="p9" data-title="AUTO_INCREMENT"><div class="kicker">DDL / DML · 9</div><h2>AUTO_INCREMENT: generated IDs</h2><p>With manually assigned IDs, each insert supplies the ID. With <code>AUTO_INCREMENT</code>, MySQL generates one when the column is omitted or set to NULL.</p><div class="code"><div class="codehead"><span>DDL · generated primary key</span><button class="copy">Copy</button></div><pre><code>CREATE TABLE app_customers (
+  customer_id INT NOT NULL AUTO_INCREMENT,
+  customer_name VARCHAR(80) NOT NULL,
+  PRIMARY KEY (customer_id)
+);
+
+INSERT INTO app_customers (customer_name)
+VALUES ('Sample customer one'), ('Sample customer two');
+
+SELECT LAST_INSERT_ID();</code></pre></div><ul><li>The auto-increment column must be indexed and is commonly the primary key.</li><li>IDs usually rise but are not gap-free; failures, rollbacks, and deletions can leave gaps.</li><li><code>LAST_INSERT_ID()</code> returns the first generated ID from the latest insert on the same connection.</li><li>Explicitly inserting a larger ID can change the next generated value.</li><li>Use surrogate IDs for relationships and separate columns for meaningful business numbers.</li></ul></section>
+<section class="page" id="p10" data-title="Reading data"><div class="kicker">DQL · 10</div><h2>SELECT: read rows</h2><div class="code"><div class="codehead"><span>DQL · select columns</span><button class="copy">Copy</button></div><pre><code>SELECT * FROM customers;
+
+SELECT customer_id, customer_name, city
+FROM customers;
+
+SELECT item_name, price, price * 1.10 AS price_with_tax
+FROM menu_items;</code></pre></div><p><code>SELECT *</code> is useful for quick inspection. Explicit column lists are more stable, readable, and efficient in application queries.</p></section>
+<section class="page" id="p11" data-title="WHERE filters"><div class="kicker">DQL · 11</div><h2>WHERE: filter rows</h2><div class="code"><div class="codehead"><span>DQL · comparison and Boolean filters</span><button class="copy">Copy</button></div><pre><code>SELECT item_name, price, rating
+FROM menu_items
+WHERE price &gt; 10 AND is_available = TRUE;
+
+SELECT customer_name, city, loyalty_tier
+FROM customers
+WHERE city = 'Portland'
+   OR loyalty_tier = 'gold';</code></pre></div><p>Comparison operators include <code>=</code>, <code>&lt;&gt;</code> / <code>!=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, and <code>&gt;=</code>. Quote text and date literals.</p></section>
+<section class="page" id="p12" data-title="Operators and precedence"><div class="kicker">DQL · 12</div><h2>Operators, precedence, and NULL</h2><div class="code"><div class="codehead"><span>DQL · BETWEEN, IN, LIKE, NULL</span><button class="copy">Copy</button></div><pre><code>SELECT item_name, category, price
+FROM menu_items
+WHERE price BETWEEN 8 AND 15
+  AND category IN ('main', 'side');
+
+SELECT restaurant_name FROM restaurants
+WHERE restaurant_name LIKE 'C%';
+
+SELECT order_id FROM orders
+WHERE courier_id IS NULL;</code></pre></div><p><code>BETWEEN</code> includes endpoints. <code>LIKE</code> uses <code>%</code> for any-length text and <code>_</code> for one character. NULL means missing or unknown; test with <code>IS NULL</code>.</p><h3>AND, OR, NOT and parentheses</h3><div class="code"><div class="codehead"><span>DQL · explicit precedence</span><button class="copy">Copy</button></div><pre><code>SELECT customer_name, city, loyalty_tier
+FROM customers
+WHERE (city = 'Portland' OR city = 'Seattle')
+  AND loyalty_tier &lt;&gt; 'standard';</code></pre></div><p><code>AND</code> has higher precedence than <code>OR</code>. Parentheses make intent clear. SQL uses TRUE, FALSE, and UNKNOWN logic; comparisons involving NULL commonly yield UNKNOWN. <code>COALESCE(value, fallback)</code> returns the first non-NULL value.</p></section>
+<section class="page" id="p13" data-title="Aggregate functions"><div class="kicker">DQL · 13</div><h2>Aggregate functions</h2><div class="code"><div class="codehead"><span>DQL · common aggregates</span><button class="copy">Copy</button></div><pre><code>SELECT COUNT(*) AS item_rows,
+       COUNT(rating) AS rated_items,
+       COUNT(DISTINCT category) AS categories,
+       AVG(price) AS average_price,
+       MIN(price) AS lowest_price,
+       MAX(price) AS highest_price,
+       SUM(price) AS sum_of_item_prices
+FROM menu_items;</code></pre></div><p><code>COUNT(*)</code> counts rows; <code>COUNT(column)</code> ignores NULL; <code>COUNT(DISTINCT column)</code> counts distinct non-NULL values. SUM and AVG ignore NULL. Menu price totals are not sales revenue; sales require quantities from order lines.</p></section>
+<section class="page" id="p14" data-title="GROUP BY and HAVING"><div class="kicker">DQL · 14</div><h2>GROUP BY and HAVING</h2><p><code>GROUP BY</code> partitions rows for aggregation. <code>WHERE</code> filters rows before grouping; <code>HAVING</code> filters groups after aggregation.</p><div class="code"><div class="codehead"><span>DQL · aggregate by restaurant</span><button class="copy">Copy</button></div><pre><code>SELECT restaurant_id, COUNT(*) AS item_count,
+       AVG(price) AS average_price
+FROM menu_items
+GROUP BY restaurant_id
+HAVING COUNT(*) &gt;= 1
+ORDER BY average_price DESC;</code></pre></div><h3>Conditional aggregation</h3><div class="code"><div class="codehead"><span>DQL · count status categories</span><button class="copy">Copy</button></div><pre><code>SELECT restaurant_id, COUNT(*) AS all_orders,
+ SUM(CASE WHEN status='delivered' THEN 1 ELSE 0 END) AS delivered,
+ SUM(CASE WHEN status='cancelled' THEN 1 ELSE 0 END) AS cancelled
+FROM orders GROUP BY restaurant_id;</code></pre></div><p>In strict SQL, nonaggregate selected expressions should be grouped or functionally dependent on grouped keys. MySQL’s <code>ONLY_FULL_GROUP_BY</code> helps catch ambiguous queries.</p></section>
+<section class="page" id="p15" data-title="Joins"><div class="kicker">DQL · 15</div><h2>Joins: connect related rows</h2><div class="code"><div class="codehead"><span>DQL · order and customer details</span><button class="copy">Copy</button></div><pre><code>SELECT o.order_id, c.customer_name,
+       r.restaurant_name, o.status
+FROM orders o
+JOIN customers c ON c.customer_id = o.customer_id
+JOIN restaurants r ON r.restaurant_id = o.restaurant_id
+ORDER BY o.order_id;</code></pre></div><p>The inner joins omit order 1015 because customer 999 is absent. Use aliases and qualify ambiguous columns.</p><h3>Join at the right grain</h3><div class="code"><div class="codehead"><span>DQL · order line detail</span><button class="copy">Copy</button></div><pre><code>SELECT o.order_id, oi.order_item_id, mi.item_name,
+       oi.quantity, oi.unit_price
+FROM orders o
+JOIN order_items oi ON oi.order_id = o.order_id
+LEFT JOIN menu_items mi ON mi.item_id = oi.item_id
+ORDER BY o.order_id, oi.order_item_id;</code></pre></div><p>Orders with several line items appear several times. Joining order-level fees into this result repeats the fee for every line. Aggregate at the correct level or pre-aggregate line items.</p></section>
+<section class="page" id="p16" data-title="Join types and set operations"><div class="kicker">DQL · 16</div><h2>Join types and combinations</h2><div class="grid"><div class="card"><h3>INNER JOIN</h3><p>Only matching rows on both sides.</p></div><div class="card"><h3>LEFT JOIN</h3><p>All left rows; unmatched right columns become NULL.</p></div><div class="card"><h3>RIGHT JOIN</h3><p>All right rows; often rewritten as LEFT JOIN by swapping tables.</p></div><div class="card"><h3>FULL OUTER JOIN</h3><p>All matches and unmatched rows from both sides; MySQL has no native syntax.</p></div><div class="card"><h3>CROSS JOIN</h3><p>Every pair; 15 customers × 15 restaurants gives 225 rows.</p></div><div class="card"><h3>Self join</h3><p>A table joined to itself using different aliases.</p></div></div><div class="code"><div class="codehead"><span>DQL · unmatched customers</span><button class="copy">Copy</button></div><pre><code>SELECT c.customer_id, c.customer_name
+FROM customers c LEFT JOIN orders o
+  ON o.customer_id = c.customer_id
+WHERE o.order_id IS NULL;</code></pre></div><div class="code"><div class="codehead"><span>DQL · emulate FULL OUTER JOIN</span><button class="copy">Copy</button></div><pre><code>SELECT c.customer_id,c.customer_name,o.order_id
+FROM customers c LEFT JOIN orders o ON o.customer_id=c.customer_id
+UNION ALL
+SELECT c.customer_id,c.customer_name,o.order_id
+FROM orders o LEFT JOIN customers c ON c.customer_id=o.customer_id
+WHERE c.customer_id IS NULL;</code></pre></div><p><code>UNION</code> removes duplicate rows; <code>UNION ALL</code> preserves them. Corresponding query columns must align in order and compatible type.</p></section>
+<section class="page" id="p17" data-title="Subqueries"><div class="kicker">DQL · 17</div><h2>Subqueries</h2><p>A subquery is a query inside another query. It may return a scalar value, list, result table, or existence test.</p><div class="code"><div class="codehead"><span>DQL · scalar subquery</span><button class="copy">Copy</button></div><pre><code>SELECT item_name, price
+FROM menu_items
+WHERE price &gt; (SELECT AVG(price) FROM menu_items);</code></pre></div><div class="code"><div class="codehead"><span>DQL · IN and EXISTS</span><button class="copy">Copy</button></div><pre><code>SELECT customer_id, customer_name
+FROM customers
+WHERE customer_id IN (SELECT customer_id FROM orders);
+
+SELECT c.customer_id, c.customer_name
+FROM customers c
+WHERE EXISTS (SELECT 1 FROM orders o
+              WHERE o.customer_id=c.customer_id);</code></pre></div><p>A scalar subquery must return one value. <code>EXISTS</code> tests for at least one matching row. Prefer <code>NOT EXISTS</code> to <code>NOT IN</code> when the inner result might contain NULL.</p></section>
+<section class="page" id="p18" data-title="CTEs"><div class="kicker">DQL · 18</div><h2>CTEs: name intermediate results</h2><div class="code"><div class="codehead"><span>DQL · customer spend with CTEs</span><button class="copy">Copy</button></div><pre><code>WITH order_food_totals AS (
+  SELECT order_id, SUM(quantity * unit_price) AS food_total
+  FROM order_items GROUP BY order_id
+), customer_totals AS (
+  SELECT o.customer_id, COUNT(*) AS order_count,
+         SUM(t.food_total + o.delivery_fee) AS spend
+  FROM orders o JOIN order_food_totals t ON t.order_id=o.order_id
+  GROUP BY o.customer_id
+)
+SELECT c.customer_name, ct.order_count, ct.spend
+FROM customer_totals ct JOIN customers c
+  ON c.customer_id=ct.customer_id
+ORDER BY ct.spend DESC;</code></pre></div><p>A CTE exists for one statement and can clarify multi-step queries. It is not automatically faster than a subquery.</p><h3>Recursive CTE</h3><div class="code"><div class="codehead"><span>DQL · generate a date sequence</span><button class="copy">Copy</button></div><pre><code>WITH RECURSIVE days AS (
+  SELECT DATE('2025-09-01') AS day
+  UNION ALL
+  SELECT day + INTERVAL 1 DAY
+  FROM days WHERE day &lt; '2025-09-07'
+)
+SELECT day FROM days;</code></pre></div><p>Recursive CTEs have an anchor member and recursive member. Always include a termination condition.</p></section>
+<section class="page" id="p19" data-title="Window functions"><div class="kicker">DQL · 19</div><h2>Window functions</h2><p>Window functions calculate across related rows while keeping individual rows in the result.</p><div class="code"><div class="codehead"><span>DQL · ROW_NUMBER, RANK, DENSE_RANK</span><button class="copy">Copy</button></div><pre><code>SELECT item_name, rating,
+ ROW_NUMBER() OVER (ORDER BY rating DESC, item_id) AS row_num,
+ RANK() OVER (ORDER BY rating DESC) AS rating_rank,
+ DENSE_RANK() OVER (ORDER BY rating DESC) AS dense_rank
+FROM menu_items WHERE rating IS NOT NULL
+ORDER BY rating DESC,item_id;</code></pre></div><div class="tablewrap"><table><thead><tr><th>Ratings</th><th>RANK</th><th>DENSE_RANK</th></tr></thead><tbody><tr><td>4.9, 4.9</td><td>1, 1</td><td>1, 1</td></tr><tr><td>4.8, 4.8</td><td>3, 3</td><td>2, 2</td></tr><tr><td>4.7, 4.7</td><td>5, 5</td><td>3, 3</td></tr></tbody></table></div><p><code>ROW_NUMBER</code> is unique; <code>RANK</code> leaves gaps after ties; <code>DENSE_RANK</code> does not. <code>PARTITION BY restaurant_id</code> restarts rankings for each restaurant.</p><div class="code"><div class="codehead"><span>DQL · running total and LAG</span><button class="copy">Copy</button></div><pre><code>WITH order_totals AS (
+ SELECT o.order_id,o.customer_id,o.order_date,
+        SUM(oi.quantity*oi.unit_price)+o.delivery_fee AS total
+ FROM orders o JOIN order_items oi ON oi.order_id=o.order_id
+ GROUP BY o.order_id,o.customer_id,o.order_date,o.delivery_fee
+)
+SELECT customer_id,order_id,order_date,total,
+ SUM(total) OVER (PARTITION BY customer_id
+   ORDER BY order_date,order_id
+   ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS running_spend,
+ LAG(total) OVER (PARTITION BY customer_id
+   ORDER BY order_date,order_id) AS previous_order_total
+FROM order_totals;</code></pre></div><p><code>OVER</code> defines the window; <code>PARTITION BY</code> groups it; <code>ORDER BY</code> sequences it; the frame defines included rows. <code>LAG</code> and <code>LEAD</code> access neighboring rows.</p></section>
+<section class="page" id="p20" data-title="CASE and NULL"><div class="kicker">DQL · 20</div><h2>CASE, NULL, and conditional logic</h2><div class="code"><div class="codehead"><span>DQL · classify delivery fees</span><button class="copy">Copy</button></div><pre><code>SELECT order_id, delivery_fee,
+ CASE WHEN delivery_fee = 0 THEN 'Free'
+      WHEN delivery_fee &lt; 3 THEN 'Low'
+      ELSE 'Standard' END AS fee_band
+FROM orders;</code></pre></div><p><code>CASE</code> can be used in SELECT, ORDER BY, and aggregate expressions. NULL represents missing or unknown data and is not equal to itself. Use <code>IS NULL</code>. Aggregates generally ignore NULL. A fallback value should not be mistaken for a real key.</p></section>
+<section class="page" id="p21" data-title="INSERT UPDATE DELETE"><div class="kicker">DML · 21</div><h2>INSERT, UPDATE, DELETE</h2><div class="code"><div class="codehead"><span>DML · insert with explicit columns</span><button class="copy">Copy</button></div><pre><code>INSERT INTO menu_items
+ (item_id,restaurant_id,item_name,category,price,rating,is_available)
+VALUES (116,1,'Seasonal grain bowl','main',14.25,4.6,TRUE);</code></pre></div><div class="code"><div class="codehead"><span>DML · inspect and update</span><button class="copy">Copy</button></div><pre><code>SELECT item_id,item_name,price FROM menu_items
+WHERE restaurant_id=1 AND category='side';
+
+UPDATE menu_items SET price=price*1.05
+WHERE restaurant_id=1 AND category='side';</code></pre></div><div class="code"><div class="codehead"><span>DML · delete filtered rows</span><button class="copy">Copy</button></div><pre><code>DELETE FROM orders
+WHERE status='cancelled'
+  AND order_date &lt; '2025-01-01';</code></pre></div><div class="callout">UPDATE or DELETE without WHERE affects every row. Preview with SELECT and verify affected-row counts. Joined modification syntax varies by database.</div></section>
+<section class="page" id="p22" data-title="TCL transactions"><div class="kicker">TCL · 22</div><h2>Transactions: COMMIT, ROLLBACK, SAVEPOINT</h2><p>Transactions group changes into one unit of work when using a transactional engine such as InnoDB.</p><div class="code"><div class="codehead"><span>TCL · savepoint example</span><button class="copy">Copy</button></div><pre><code>START TRANSACTION;
+UPDATE menu_items SET price=price*0.95
+WHERE restaurant_id=1;
+SAVEPOINT after_discount;
+UPDATE orders SET delivery_fee=0
+WHERE status='delivered';
+ROLLBACK TO SAVEPOINT after_discount;
+COMMIT;</code></pre></div><p>The earlier price change remains; the later delivery-fee change is undone. <code>ROLLBACK</code> undoes uncommitted work; <code>COMMIT</code> keeps it. MySQL DDL often implicitly commits.</p><div class="grid"><div class="card"><h3>Atomicity</h3><p>All work succeeds or is undone.</p></div><div class="card"><h3>Consistency</h3><p>Rules and constraints remain satisfied.</p></div><div class="card"><h3>Isolation</h3><p>Concurrent work follows isolation rules.</p></div><div class="card"><h3>Durability</h3><p>Committed changes persist.</p></div></div></section>
+<section class="page" id="p23" data-title="DCL permissions"><div class="kicker">DCL · 23</div><h2>GRANT and REVOKE</h2><p>DCL controls access to database objects. Apply least privilege: give accounts only the access needed for their task.</p><div class="code"><div class="codehead"><span>DCL · create read-only account</span><button class="copy">Copy</button></div><pre><code>CREATE USER 'dashdish_reader'@'localhost'
+IDENTIFIED BY 'Use-a-unique-secret-from-a-secret-manager';
+GRANT SELECT ON dashdish.*
+TO 'dashdish_reader'@'localhost';
+SHOW GRANTS FOR 'dashdish_reader'@'localhost';
+REVOKE SELECT ON dashdish.*
+FROM 'dashdish_reader'@'localhost';</code></pre></div><div class="callout">Example credentials are placeholders, not production secrets. Account syntax depends on host, version, and deployment settings.</div></section>
+<section class="page" id="p24" data-title="Constraints and integrity"><div class="kicker">DDL · 24</div><h2>Constraints and referential integrity</h2><p>A primary key identifies a row. A foreign key ensures a referenced record exists. Find the intentionally unmatched references before adding foreign keys.</p><div class="code"><div class="codehead"><span>DQL · find orphan references</span><button class="copy">Copy</button></div><pre><code>SELECT o.order_id,o.customer_id
+FROM orders o LEFT JOIN customers c
+ON c.customer_id=o.customer_id
+WHERE c.customer_id IS NULL;
+
+SELECT oi.order_item_id,oi.item_id
+FROM order_items oi LEFT JOIN menu_items m
+ON m.item_id=oi.item_id
+WHERE m.item_id IS NULL;</code></pre></div><p>After repairing/removing invalid rows, add constraints:</p><div class="code"><div class="codehead"><span>DDL · add foreign keys after cleanup</span><button class="copy">Copy</button></div><pre><code>ALTER TABLE orders ADD CONSTRAINT fk_orders_customer
+FOREIGN KEY (customer_id) REFERENCES customers(customer_id);
+ALTER TABLE orders ADD CONSTRAINT fk_orders_restaurant
+FOREIGN KEY (restaurant_id) REFERENCES restaurants(restaurant_id);
+ALTER TABLE orders ADD CONSTRAINT fk_orders_courier
+FOREIGN KEY (courier_id) REFERENCES couriers(courier_id);
+ALTER TABLE order_items ADD CONSTRAINT fk_order_items_order
+FOREIGN KEY (order_id) REFERENCES orders(order_id);
+ALTER TABLE order_items ADD CONSTRAINT fk_order_items_menu
+FOREIGN KEY (item_id) REFERENCES menu_items(item_id);</code></pre></div><p>Foreign key columns need compatible types and indexes. Decide carefully whether deletes should be restricted, cascaded, or set a nullable child key to NULL.</p></section>
+<section class="page" id="p25" data-title="Indexes and EXPLAIN"><div class="kicker">Performance · 25</div><h2>Indexes and EXPLAIN</h2><p>Indexes can improve lookups, joins, sorting, and uniqueness checks, while consuming storage and adding work to writes.</p><div class="code"><div class="codehead"><span>DDL · create indexes</span><button class="copy">Copy</button></div><pre><code>CREATE INDEX idx_orders_customer_date
+ON orders (customer_id, order_date);
+CREATE INDEX idx_orders_restaurant_status
+ON orders (restaurant_id, status);
+CREATE INDEX idx_menu_restaurant_rating
+ON menu_items (restaurant_id, rating);</code></pre></div><p>Composite indexes are ordered by leading columns. Measure workload before adding indexes.</p><div class="code"><div class="codehead"><span>Inspect query plan</span><button class="copy">Copy</button></div><pre><code>EXPLAIN
+SELECT order_id,order_date FROM orders
+WHERE customer_id=3 ORDER BY order_date;
+
+EXPLAIN ANALYZE
+SELECT order_id,order_date FROM orders
+WHERE customer_id=3 ORDER BY order_date;</code></pre></div><p><code>EXPLAIN ANALYZE</code> executes the query. Use care with expensive queries on production data.</p></section>
+<section class="page" id="p26" data-title="Practice and recap"><div class="kicker">Practice · 26</div><h2>Practice lab</h2><div class="exercise"><h3>Find customers without orders</h3><details><summary>Show solution</summary><div class="code"><pre><code>SELECT c.customer_id,c.customer_name
+FROM customers c LEFT JOIN orders o
+ON o.customer_id=c.customer_id
+WHERE o.order_id IS NULL;</code></pre></div></details></div><div class="exercise"><h3>Delivered-order counts for every restaurant</h3><details><summary>Show solution</summary><div class="code"><pre><code>SELECT r.restaurant_name,COUNT(o.order_id) AS delivered_orders
+FROM restaurants r LEFT JOIN orders o
+ON o.restaurant_id=r.restaurant_id AND o.status='delivered'
+GROUP BY r.restaurant_id,r.restaurant_name
+ORDER BY delivered_orders DESC;</code></pre></div><p>Count the nullable joined key rather than <code>COUNT(*)</code> to show zero for unmatched restaurants.</p></details></div><div class="exercise"><h3>Top two ratings per restaurant</h3><details><summary>Show solution</summary><div class="code"><pre><code>WITH ranked AS (
+ SELECT restaurant_id,item_name,rating,
+ DENSE_RANK() OVER(PARTITION BY restaurant_id ORDER BY rating DESC) AS rnk
+ FROM menu_items WHERE rating IS NOT NULL
+)
+SELECT * FROM ranked WHERE rnk &lt;= 2;</code></pre></div></details></div><h3>Try these next</h3><ol><li>Calculate each order’s subtotal and grand total.</li><li>Find restaurants with no menu items.</li><li>Compare orders with the previous order using LAG.</li><li>Calculate average rating and available-item count by cuisine.</li><li>Repair orphan records, then add foreign keys.</li><li>Change prices in a transaction, inspect, and roll back.</li><li>Explain why joining order fees to order lines can overcount fees.</li></ol><div class="note"><strong>Command reference:</strong> DDL defines structures; DML changes rows; DQL reads rows; TCL controls transactions; DCL manages permissions.</div><p>SQL syntax differs across database engines. Check identifier quoting, generated-key syntax, date arithmetic, join support, transaction behavior, and permission commands when changing dialects.</p></section>
+<div class="pager"><button id="prevBottom">← Previous lesson</button><span class="pagecount" id="pagecount">Lesson 1 of 26</span><button id="nextBottom">Next lesson →</button></div>
+</main><footer>DashDish SQL Mastery · Fictional case-study data for SQL learning.</footer></div></div>
+<script>
+const pages=[...document.querySelectorAll('.page')],navLinks=[...document.querySelectorAll('#nav a')];let idx=0;
+function show(i,updateHash=true){idx=Math.max(0,Math.min(pages.length-1,i));pages.forEach((p,n)=>p.classList.toggle('current',n===idx));navLinks.forEach((a,n)=>a.classList.toggle('active',n===idx));document.getElementById('crumb').textContent='DASHDISH SQL · '+pages[idx].dataset.title.toUpperCase();document.getElementById('pagecount').textContent=`Lesson ${idx+1} of ${pages.length}`;document.getElementById('progress').style.width=((idx+1)/pages.length*100)+'%';['prev','prevBottom'].forEach(id=>document.getElementById(id).disabled=idx===0);['next','nextBottom'].forEach(id=>document.getElementById(id).disabled=idx===pages.length-1);if(updateHash)history.replaceState(null,'','#'+pages[idx].id);window.scrollTo({top:0,behavior:'smooth'});}
+navLinks.forEach((a,i)=>a.addEventListener('click',e=>{e.preventDefault();show(i)}));['prev','prevBottom'].forEach(id=>document.getElementById(id).addEventListener('click',()=>show(idx-1)));['next','nextBottom'].forEach(id=>document.getElementById(id).addEventListener('click',()=>show(idx+1)));document.addEventListener('keydown',e=>{if(['ArrowRight','PageDown'].includes(e.key)&&!['INPUT','TEXTAREA'].includes(document.activeElement.tagName))show(idx+1);if(['ArrowLeft','PageUp'].includes(e.key)&&!['INPUT','TEXTAREA'].includes(document.activeElement.tagName))show(idx-1)});document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(b.closest('.code').querySelector('pre').innerText);b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1200)}catch{b.textContent='Select code';setTimeout(()=>b.textContent='Copy',1200)}}));const initial=location.hash.match(/^#p(\d+)$/);if(initial)show(Number(initial[1])-1,false);
+</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"69713bbbe29248ee913d0340c42d6994","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
